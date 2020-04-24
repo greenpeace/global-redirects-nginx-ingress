@@ -6,3 +6,6 @@ controller:
     maxReplicas: 5
 rbac:
   create: true
+  ## Name of the ingress class to route through this controller
+  ##
+ingressClass: redirects-nginx
