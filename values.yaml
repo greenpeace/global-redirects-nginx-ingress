@@ -4,8 +4,6 @@ controller:
     enabled: true
     minReplicas: 3
     maxReplicas: 5
+    ingressClass: redirects-nginx
 rbac:
   create: true
-  ## Name of the ingress class to route through this controller
-  ##
-ingressClass: redirects-nginx
