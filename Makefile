@@ -1,6 +1,6 @@
 # SHELL := /bin/bash
 
-RELEASE := nginx-ingress
+RELEASE := global-ingress
 NAMESPACE := global-redirects
 
 CHART_NAME := stable/nginx-ingress
