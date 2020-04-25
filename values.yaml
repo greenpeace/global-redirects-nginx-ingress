@@ -5,5 +5,7 @@ controller:
     minReplicas: 3
     maxReplicas: 5
   ingressClass: redirects-nginx
+  scope:
+    enabled: true
 rbac:
   create: true
