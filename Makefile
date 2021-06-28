@@ -4,7 +4,7 @@ RELEASE := global-ingress
 NAMESPACE := global-redirects
 
 CHART_NAME := ingress-nginx/ingress-nginx
-CHART_VERSION ?= 3.7.0
+CHART_VERSION ?= 3.34.0
 
 DEV_CLUSTER ?= p4-development
 DEV_PROJECT ?= planet-4-151612
