@@ -21,6 +21,11 @@ controller:
       additionalLabels:
         release: prometheus-stack
   ingressClass: redirects-nginx
+  ingressClassResource:
+    name: redirects-nginx
+    enabled: true
+    default: false
+    controllerValue: "k8s.io/ingress-nginx"
   scope:
     enabled: true
 rbac:
