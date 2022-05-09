@@ -26,7 +26,5 @@ controller:
     enabled: true
     default: false
     controllerValue: "k8s.io/ingress-nginx"
-  scope:
-    enabled: true
 rbac:
   create: true
