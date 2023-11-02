@@ -24,8 +24,8 @@ lint-yaml:
 
 # Helm Initialisation
 init:
-	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-	helm repo update
+	helm3 repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+	helm3 repo update
 
 # Helm Deploy to Development
 dev: lint init
@@ -35,7 +35,7 @@ endif
 	gcloud config set project $(DEV_PROJECT)
 	gcloud container clusters get-credentials $(DEV_CLUSTER) --zone $(DEV_ZONE) --project $(DEV_PROJECT)
 	-kubectl create namespace $(NAMESPACE)
-	helm upgrade --install --wait $(RELEASE) \
+	helm3 upgrade --install --wait $(RELEASE) \
 		--namespace=$(NAMESPACE) \
 		--version $(CHART_VERSION) \
 		-f values.yaml \
@@ -51,7 +51,7 @@ endif
 	gcloud config set project $(PROD_PROJECT)
 	gcloud container clusters get-credentials $(PROD_PROJECT) --zone $(PROD_ZONE) --project $(PROD_PROJECT)
 	-kubectl create namespace $(NAMESPACE)
-	helm upgrade --install --wait $(RELEASE) \
+	helm3 upgrade --install --wait $(RELEASE) \
 		--namespace=$(NAMESPACE) \
 		--version $(CHART_VERSION) \
 		-f values.yaml \
@@ -61,23 +61,23 @@ endif
 
 # Helm status
 status:
-	helm status $(CHART_NAME) -n $(NAMESPACE)
+	helm3 status $(CHART_NAME) -n $(NAMESPACE)
 
 # Display user values followed by all values
 values:
-	helm get values $(CHART_NAME) -n $(NAMESPACE)
-	helm get values $(CHART_NAME) -n $(NAMESPACE) -a
+	helm3 get values $(CHART_NAME) -n $(NAMESPACE)
+	helm3 get values $(CHART_NAME) -n $(NAMESPACE) -a
 
 # Display helm history
 history:
-	helm history $(RELEASE) -n $(NAMESPACE) --max=5
+	helm3 history $(RELEASE) -n $(NAMESPACE) --max=5
 
 # Delete a release when you intend reinstalling it to keep history
 uninstall:
-	helm uninstall $(RELEASE) -n $(NAMESPACE) --keep-history
+	helm3 uninstall $(RELEASE) -n $(NAMESPACE) --keep-history
 
 # Completely remove helm install, config data, persistent volumes etc.
 # Before running this ensure you have deleted any other related config
 destroy:
 	@echo -n "You are about to ** DELETE DATA **, enter y if your sure ? [y/N] " && read ans && [ $${ans:-N} = y ]
-	helm uninstall $(RELEASE) -n $(NAMESPACE)
+	helm3 uninstall $(RELEASE) -n $(NAMESPACE)
